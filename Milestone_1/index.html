@@ -15,9 +15,120 @@
 </head>
 
 <body>
-  <main id="boolzapp">
+  <header class="top_banner">
 
+  </header>
+  <main id="main_app" class="d_flex">
+    <div id="boolzapp" class="app_wrapper d_flex">
+      <aside id="contacts_aside">
+        <header  class="header_aside">
+          <section id="admin_box" class="d_flex">
+            <div class="info_admin d_flex">
+              <img id="avatar_image" :src="'assets/img/contact/avatar' + admin.avatar + '.jpg'" alt="">
+              <h2 class="name"> {{admin.name}}</h2>
+              <!-- /.name -->
+            </div>
+            <!-- /.info_admin -->
+            <!-- potrei usare le emoji al posto delle icon ed incapsularle in un tag al cui dare una class -->
+            <nav class="header_aside_nav">
+              <i class="nav_admin_icon fas fa-circle-notch"> </i>
+              <i class="nav_admin_icon far fa-comment-alt-dots"> </i>
+              <i class="nav_admin_icon far fa-ellipsis-v"> </i>
+            </nav>
+          </section>
+          <!-- /#admin_box -->
+          <section class="option_alert d_flex">   <!-- v-if="servingStatus" -->
+            <i class="alert_icon fas fa-bell-slash"> </i>
+            <!-- <i class="fad fa-bell-on" v-else> </i> -->
+            <div class="info_alert">
+              <h2>Ricevi notifiche di nuovi messaggi</h2>
+              <!-- qui può andare messaggio dinamico se attivo non attivo -->
+              <a href="#" class="servingStatus"> Attiva notifiche desktop </a>
+            </div>
+            <!-- /.info_alert -->
+          </section>
+        </header>
+        <!-- /.header_aside -->
+        <main class="main_aside d_flex">
+          <section class="normal_contacs_search d_flex">
+            <span class="icon_wrapper"><i class="fal fa-search"></i></span>            
+            <input type="search" class="text_input" placeholder="Cerca o inizia una nuova chat">
+          </section>
+          <section class="contacts_box d_flex">
+            <ul class="contacts_chats_list">
+              <li class="chats_contact d_flex" v-for=" (contact,index) in contacts" @click="openCurrentUserWindow()">
+                <img class="profile_image" :src="'assets/img/contact/avatar' + contacts[index].avatar + '.jpg'" alt="">
+                <div class="info_contact">
+                  <header class="header_chats_contac d_flex">
+                    <h3 class="name_contact">{{contacts[index].name}} </h3>
+                    <time class="chats_time"> {{contacts[index].messages[0].date}}</time>
+                  </header>
+                  <p class="last_message"> ultimo messaggio </p>
+                </div>
+                <!-- /.info_contact -->
+              </li>
+            </ul>
+          </section>
+          <!-- /.chat_contacts -->
+        </main>
+        <!-- /.main_aside -->
+      </aside>
+      <section id="chats_windows" class="d_flex">
+        <nav class="user_nav d_flex">
+          <div class="nal_left d_flex" v-for="(state,index) in contacts" v-if="contacts[index].state">
+            <img class="profile_image" :src="'assets/img/contact/avatar' + contacts[index].avatar + '.jpg'"
+              alt="avatar utente">
+            <div class="info_contact">
+              <h3 class="name_contact">{{ contacts[index].name }} </h3>
+              <time class="chats_time">Ultimo accesso oggi alle: {{nowTime}} </time>
+            </div>
+            </header>
+            <p class="last_message"> </p>
+          </div>
+          <!-- /.nal_left -->
+          <div class="nav_right">
+            <i class="nav_icon fal fa-search"> </i>
+            <i class="nav_icon fal fa-paperclip"> </i>
+            <i class="nav_icon far fa-ellipsis-v"> </i>
+          </div>
+          <!-- /.nav right -->
+        </nav>
+        <!-- /.user_nav -->
+        <main id="main_chat_window" class="d_flex">
+          <section class="current_user d_flex" v-for="(contact,index) in contacts" v-if="contacts[index].state">
+            <div :class="'bubble_message ' + contacts[index].messages[position].status"
+              v-for="(message,position) in contacts[index].messages"
+              >
+              <!-- v-if="contacts[index].messages[position].status == 'sent'" -->
+              <p class="user_message">{{contacts[index].messages[position].text}}</p>
+              <time class="message_time">{{contacts[index].messages[position].date}}</time>
+            </div>
+            <!-- /.bubble_message -->
+          </section>
+          <!-- /.current_user -->
+
+        </main>
+        <footer id="footer_chat_window" class="d_flex">
+          <div id="emoji_window" class="d_flex">
+            <i class="far fa-smile-beam"></i>
+          </div>
+          <!-- /.emoji_window -->
+
+          <input class="input_message" type="text" id="input_message" name="input_message" autocomplete="off"
+            placeholder="Scrivi un messaggio" autofocus > <!-- v-model="messages[index].text" -->
+
+          <div id="audio_message" class="d_flex">
+            <i class="fas fa-microphone"></i>
+          </div>
+          <!-- /.audio_message -->
+
+        </footer>
+
+      </section>
+    </div>
+    <!-- /.app_wrapper -->
   </main>
+  <!-- /.main_app -->
 
   <!-- development version, includes helpful console warnings -->
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
