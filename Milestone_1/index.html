@@ -58,7 +58,7 @@
             <ul class="contacts_chats_list">
               <li class="chats_contact d_flex" v-for=" (contact,index) in contacts" @click="openCurrentUserWindow()">
                 <img class="profile_image" :src="'assets/img/contact/avatar' + contacts[index].avatar + '.jpg'" alt="">
-                <div class="info_contact">
+                <div class="info_contact d_flex">
                   <header class="header_chats_contac d_flex">
                     <h3 class="name_contact">{{contacts[index].name}} </h3>
                     <time class="chats_time"> {{contacts[index].messages[0].date}}</time>
@@ -83,7 +83,6 @@
               <time class="chats_time">Ultimo accesso oggi alle: {{nowTime}} </time>
             </div>
             </header>
-            <p class="last_message"> </p>
           </div>
           <!-- /.nal_left -->
           <div class="nav_right">
@@ -95,16 +94,16 @@
         </nav>
         <!-- /.user_nav -->
         <main id="main_chat_window" class="d_flex">
-          <section class="current_user d_flex" v-for="(contact,index) in contacts" v-if="contacts[index].state">
-            <div :class="'bubble_message ' + contacts[index].messages[position].status"
+          <ul class="current_user" v-for="(contact,index) in contacts" v-if="contacts[index].state">
+            <li :class="'bubble_message ' + contacts[index].messages[position].status"
               v-for="(message,position) in contacts[index].messages"
               >
               <!-- v-if="contacts[index].messages[position].status == 'sent'" -->
               <p class="user_message">{{contacts[index].messages[position].text}}</p>
               <time class="message_time">{{contacts[index].messages[position].date}}</time>
-            </div>
+            </li>
             <!-- /.bubble_message -->
-          </section>
+          </ul>
           <!-- /.current_user -->
 
         </main>
