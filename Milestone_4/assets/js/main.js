@@ -101,10 +101,11 @@ let boolzapp = new Vue({
       },
     ],
     admin:{
-        name: "Antonio",
-        avatar:"_io",
-      },
+      name: "Antonio",
+      avatar:"_io",
+    },
     newMessage:"",
+    search:'',
     nowTime:"",
   },
   methods: {
@@ -149,8 +150,15 @@ let boolzapp = new Vue({
       //setInterval(this.nowTimes,1000); in questo modo diventa un orologgio 
     },
   },
+  /* Uso computed in modo da renderizzare l'uso della funzione solo quando entra in azione il search e non ad ogni iterazione dovuta da qual si voglia azione - cosache succederebbe se creassi un methods */
   computed: {
-    
+    filteredList() {
+      /* con filter mi ritorno un array filtrato di "contacts" che rispetti la condizione data, che verifica il valore della funzione  */
+      return this.contacts.filter(contactUser => {
+        /* trasformo la stinga tutta in lettere minuscole per evitare possa escludere dei risultati nella ricerca - sia nella destinazione che nella recezione, ovvero nel search */
+        return contactUser.name.toLowerCase().includes(this.search.toLowerCase());
+      });
+    }
   },
   mounted(){
     this.nowTimes();

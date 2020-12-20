@@ -52,21 +52,23 @@
         <main class="main_aside d_flex">
           <section class="normal_contacs_search d_flex">
             <span class="icon_wrapper"><i class="fal fa-search"></i></span>            
-            <input type="search" class="text_input" placeholder="Cerca o inizia una nuova chat">
+            <input type="search" class="text_input" v-model="search" placeholder="Cerca o inizia una nuova chat">
           </section>
           <section class="contacts_box d_flex">
             <ul class="contacts_chats_list">
-              <li class="chats_contact d_flex" v-for=" (contact,index) in contacts"
+              <li class="chats_contact d_flex" v-for=" (contact,index) in filteredList"
                 @click="openCurrentUserWindow(index)">
-                <img class="profile_image" :src="'assets/img/contact/avatar' + contacts[index].avatar + '.jpg'" alt="">
+                <img class="profile_image" :src="'assets/img/contact/avatar' + filteredList[index].avatar + '.jpg'"
+                  alt="">
                 <div class="info_contact d_flex">
                   <header class="header_chats_contac d_flex">
-                    <h3 class="name_contact">{{contact.name}} </h3> <!-- contact.name e contacts[index].name -->
+                    <h3 class="name_contact">{{contact.name}} </h3>
+                    <!-- filteredList.name e filteredList[index].name -->
                     <time class="chats_time">
                       {{contact.messages[(contact.messages).length - 1].date}}</time>
                   </header>
                   <p class="last_message"> {{contact.messages[(contact.messages).length - 1].text}} </p>
-                  <!-- contacts[index].messages[(contacts[index].messages).length - 1].text è l'equivalente di  contact.messages[(contact.messages).length - 1].text -->
+                  <!-- filteredList[index].messages[(filteredList[index].messages).length - 1].text è l'equivalente di  contact.messages[(contact.messages).length - 1].text -->
                 </div>
                 <!-- /.info_contact -->
               </li>
