@@ -110,18 +110,19 @@ let boolzapp = new Vue({
   },
   methods: {
     openCurrentUserWindow(index){
-      this.contacts.forEach(element => {
-        if (element.state) {
-          element.state = false;
-        }
+      this.contacts.forEach(element=>{
+        element.state = false;
+        this.filteredList.forEach(element => {if (element.state) {element.state = false;}});
+        //console.log(element.state);
       });
-      this.contacts[index].state = true;
+      console.log(this.contacts);
+      this.filteredList[index].state = true;
     },
     addCurrentMessage() {
       this.contacts.forEach(element => {
         if (element.state) {
           console.log(element);
-          // key è dove pusciare, il percorso
+          // element è dove pusciare, il percorso
           element.messages.push({
             date: this.nowTime,
             text: this.newMessage,
@@ -138,7 +139,6 @@ let boolzapp = new Vue({
         }
       });
       this.newMessage = '';
-      
     },
     timeFormate() {
       let date = new Date().toLocaleDateString();

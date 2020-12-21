@@ -21,7 +21,7 @@
   <main id="main_app" class="d_flex">
     <div id="boolzapp" class="app_wrapper d_flex">
       <aside id="contacts_aside">
-        <header  class="header_aside">
+        <header class="header_aside">
           <section id="admin_box" class="d_flex">
             <div class="info_admin d_flex">
               <img id="avatar_image" :src="'assets/img/contact/avatar' + admin.avatar + '.jpg'" alt="">
@@ -37,7 +37,8 @@
             </nav>
           </section>
           <!-- /#admin_box -->
-          <section class="option_alert d_flex">   <!-- v-if="servingStatus" -->
+          <section class="option_alert d_flex">
+            <!-- v-if="servingStatus" -->
             <i class="alert_icon fas fa-bell-slash"> </i>
             <!-- <i class="fad fa-bell-on" v-else> </i> -->
             <div class="info_alert">
@@ -51,7 +52,7 @@
         <!-- /.header_aside -->
         <main class="main_aside d_flex">
           <section class="normal_contacs_search d_flex">
-            <span class="icon_wrapper"><i class="fal fa-search"></i></span>            
+            <span class="icon_wrapper"><i class="fal fa-search"></i></span>
             <input type="search" class="text_input" v-model="search" placeholder="Cerca o inizia una nuova chat">
           </section>
           <section class="contacts_box d_flex">
@@ -63,7 +64,7 @@
                 <div class="info_contact d_flex">
                   <header class="header_chats_contac d_flex">
                     <h3 class="name_contact">{{contact.name}} </h3>
-                    <!-- filteredList.name e filteredList[index].name -->
+                    <!-- contact.name e filteredList[index].name -->
                     <time class="chats_time">
                       {{contact.messages[(contact.messages).length - 1].date}}</time>
                   </header>
@@ -98,12 +99,11 @@
           <!-- /.nav right -->
         </nav>
         <!-- /.user_nav -->
-        <main id="main_chat_window" class="d_flex">
+        <main id="main_chat_window" ref="reference" class="d_flex">
           <ul class="current_user d_flex" v-for="(contact,index) in contacts" v-if="contact.state">
             <li :class="'bubble_message ' + contact.messages[position].status"
-              v-for="(message,position) in contact.messages"
-              >
-              <!-- v-if="contacts[index].messages[position].status == 'sent'" -->
+              v-for="(message,position) in contact.messages">
+              <!-- v-if="contacts[index].messages[position].status == 'sent'" alternativa superata con il v-bind su class-->
               <p class="user_message">{{contact.messages[position].text}}</p>
               <time class="message_time">{{contact.messages[position].date}}</time>
             </li>
@@ -119,8 +119,7 @@
           <!-- /.emoji_window -->
 
           <input class="input_message" type="text" id="input_message" name="input_message" autocomplete="off"
-            placeholder="Scrivi un messaggio" autofocus v-model="newMessage"
-            v-on:keydown.enter="addCurrentMessage()">
+            placeholder="Scrivi un messaggio" autofocus v-model="newMessage" v-on:keydown.enter="addCurrentMessage()">
 
           <div id="audio_message" class="d_flex">
             <i class="fas fa-microphone"></i>
