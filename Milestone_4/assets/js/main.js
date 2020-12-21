@@ -135,10 +135,14 @@ let boolzapp = new Vue({
               text: 'Ok!',
               status: 'sent'
             });
-          }.bind(this), 1000);
+          }.bind(this), 3000);
         }
       });
       this.newMessage = '';
+      this.autoScrollDown();
+    },
+    autoScrollDown: function(){
+      this.$nextTick(() => this.$refs.main_chat_window.scrollIntoView(false));
     },
     timeFormate() {
       let date = new Date().toLocaleDateString();
@@ -147,7 +151,6 @@ let boolzapp = new Vue({
     },
     nowTimes(){
       this.timeFormate(new Date());
-      //setInterval(this.nowTimes,1000); in questo modo diventa un orologgio 
     },
   },
   /* Uso computed in modo da renderizzare l'uso della funzione solo quando entra in azione il search e non ad ogni iterazione dovuta da qual si voglia azione - cosache succederebbe se creassi un methods */
@@ -162,6 +165,7 @@ let boolzapp = new Vue({
   },
   mounted(){
     this.nowTimes();
+    setInterval(this.nowTimes,1000); 
   },
 
 });

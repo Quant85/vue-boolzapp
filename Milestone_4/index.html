@@ -99,8 +99,9 @@
           <!-- /.nav right -->
         </nav>
         <!-- /.user_nav -->
-        <main id="main_chat_window" ref="reference" class="d_flex">
-          <ul class="current_user d_flex" v-for="(contact,index) in contacts" v-if="contact.state">
+        <main id="main_chat_window" class="d_flex">
+          <ul class="current_user d_flex" ref="main_chat_window" v-for="(contact,index) in contacts"
+            v-if="contact.state">
             <li :class="'bubble_message ' + contact.messages[position].status"
               v-for="(message,position) in contact.messages">
               <!-- v-if="contacts[index].messages[position].status == 'sent'" alternativa superata con il v-bind su class-->
