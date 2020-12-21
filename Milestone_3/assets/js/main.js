@@ -133,7 +133,7 @@ let boolzapp = new Vue({
               text: 'Ok!',
               status: 'sent'
             });
-          }.bind(this), 1000);
+          }.bind(this), 30 * 1000);
         }
       });
       this.newMessage = '';
@@ -146,7 +146,6 @@ let boolzapp = new Vue({
     },
     nowTimes(){
       this.timeFormate(new Date());
-      //setInterval(this.nowTimes,1000); in questo modo diventa un orologgio 
     },
   },
   computed: {
@@ -154,6 +153,7 @@ let boolzapp = new Vue({
   },
   mounted(){
     this.nowTimes();
+    setInterval(this.nowTimes,1000);
   },
 
 });

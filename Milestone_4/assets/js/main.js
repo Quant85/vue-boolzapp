@@ -135,7 +135,7 @@ let boolzapp = new Vue({
               text: 'Ok!',
               status: 'sent'
             });
-          }.bind(this), 3000);
+          }.bind(this), 30 * 1000);
         }
       });
       this.newMessage = '';

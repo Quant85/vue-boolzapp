@@ -123,12 +123,12 @@ let boolzapp = new Vue({
     },
     nowTimes(){
       this.timeFormate(new Date());
-      //setInterval(this.nowTimes,1000); in questo modo diventa un orologgio 
     },
 
   },  
   mounted(){
     this.nowTimes();
+    setInterval(this.nowTimes,1000);
   },
 
 });
