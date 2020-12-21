@@ -139,7 +139,7 @@ let boolzapp = new Vue({
         }
       });
       this.newMessage = '';
-      this.autoScrollDown();
+      this.scroll();
     },
     autoScrollDown: function(){
       this.$nextTick(() => this.$refs.main_chat_window.scrollIntoView(false));
@@ -163,9 +163,12 @@ let boolzapp = new Vue({
       });
     }
   },
+  beforeMount() {
+    scroll();
+    
+  },
   mounted(){
     this.nowTimes();
     setInterval(this.nowTimes,1000); 
   },
-
 });

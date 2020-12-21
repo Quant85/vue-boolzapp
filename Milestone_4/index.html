@@ -84,9 +84,10 @@
           <div class="nal_left d_flex" v-for="(state,index) in contacts" v-if="contacts[index].state">
             <img class="profile_image" :src="'assets/img/contact/avatar' + contacts[index].avatar + '.jpg'"
               alt="avatar utente">
-            <div class="info_contact">
+            <div class="info_contact" >
               <h3 class="name_contact">{{ contacts[index].name }} </h3>
-              <time class="chats_time">Ultimo accesso oggi alle: {{nowTime}} </time>
+              <time class="chats_time">Ultimo accesso oggi alle:
+                {{state.messages[(state.messages).length - 1].date}} </time>
             </div>
             </header>
           </div>
