@@ -100,8 +100,8 @@
           <!-- /.nav right -->
         </nav>
         <!-- /.user_nav -->
-        <main id="main_chat_window" class="d_flex">
-          <ul class="current_user d_flex" ref="main_chat_window" v-for="(contact,index) in contacts"
+        <main id="main_chat_window" ref="main_chat_window" class="d_flex">
+          <ul class="current_user d_flex" v-for="(contact,index) in contacts"
             v-if="contact.state">
             <li :class="'bubble_message ' + contact.messages[position].status"
               v-for="(message,position) in contact.messages">
@@ -109,6 +109,7 @@
               <p class="user_message">{{contact.messages[position].text}}</p>
               <time class="message_time">{{contact.messages[position].date}}</time>
             </li>
+            <br>
             <!-- /.bubble_message -->
           </ul>
           <!-- /.current_user -->

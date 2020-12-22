@@ -179,7 +179,6 @@ span.icon_wrapper>svg{
 /* Chat Window */
 #chats_windows {
   width: 100%;
-  background-color: #8EDAFC;
   flex-direction: column;
 }
 
@@ -216,7 +215,8 @@ span.icon_wrapper>svg{
   background-image: url("../img/main/mine.jpg");
   justify-content: center;
   padding-top: 40px;
-  overflow-y: scroll;
+  padding-bottom: 40px;
+  overflow-y: auto;
 }
 #main_chat_window .current_user{
   width: 80%;

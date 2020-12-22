@@ -139,10 +139,17 @@ let boolzapp = new Vue({
         }
       });
       this.newMessage = '';
-      this.scroll();
     },
-    autoScrollDown: function(){
-      this.$nextTick(() => this.$refs.main_chat_window.scrollIntoView(false));
+    scroll() {
+     //https://developer.mozilla.org/it/docs/Web/API/Element/scrollTop
+      //console.log(this.$refs.main_chat_window);
+      let chat_box = this.$refs.main_chat_window;
+      //console.log(chat_box);
+      //https://developer.mozilla.org/it/docs/Web/API/Element/scrollHeight
+      let scrollHeight = chat_box.scrollHeight;
+      //console.log(scrollHeight);
+      chat_box.scrollTop = scrollHeight;
+      //console.log(chat_box.scrollTop);
     },
     timeFormate() {
       let date = new Date().toLocaleDateString();
@@ -163,12 +170,13 @@ let boolzapp = new Vue({
       });
     }
   },
-  beforeMount() {
-    scroll();
-    
-  },
   mounted(){
     this.nowTimes();
     setInterval(this.nowTimes,1000); 
+    this.scroll();//il problema è che ad ogni azione viene ricalcolata la posizione
+  },
+  updated() {
+    this.scroll();
   },
 });
+
