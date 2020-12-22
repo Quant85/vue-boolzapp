@@ -21,17 +21,20 @@ let boolzapp = new Vue({
           {
             date: '10/01/2020 15:30:55',
             text: 'Hai portato a spasso il cane?',
-            status: 'sent'
+            status: 'sent',
+            show: false,
           },
           {
             date: '10/01/2020 15:50:00',
             text: 'Ricordati di dargli da mangiare',
-            status: 'sent'
+            status: 'sent',
+            show: false,
           },
           {
             date: '10/01/2020 16:15:22',
             text: 'Tutto fatto!',
-            status: 'received'
+            status: 'received',
+            show: false,
           }
         ],
       },
@@ -39,22 +42,25 @@ let boolzapp = new Vue({
         name: 'Fabio',
         avatar: '_2',
         visible: true,
-        state: false,
+        state: false,    
         messages: [
           {
             date: '20/03/2020 16:30:00',
             text: 'Ciao come stai?',
-            status: 'sent'
+            status: 'sent',
+            show: false,
           },
           {
             date: '20/03/2020 16:30:55',
             text: 'Bene grazie! Stasera ci vediamo?',
-            status: 'received'
+            status: 'received',
+            show: false,
           },
           {
             date: '20/03/2020 16:35:00',
             text: 'Mi piacerebbe ma devo andare a fare la spesa.',
-            status: 'sent'
+            status: 'sent',
+            show: false,
           }
         ],
       },
@@ -67,17 +73,20 @@ let boolzapp = new Vue({
           {
             date: '28/03/2020 10:10:40',
             text: 'La Marianna va in campagna',
-            status: 'received'
+            status: 'received',
+            show: false,
           },
           {
             date: '28/03/2020 10:20:10',
             text: 'Sicuro di non aver sbagliato chat?',
-            status: 'sent'
+            status: 'sent',
+            show: false,
           },
           {
             date: '28/03/2020 16:15:22',
             text: 'Ah scusa!',
-            status: 'received'
+            status: 'received',
+            show: false,
           }
         ],
       },
@@ -90,12 +99,14 @@ let boolzapp = new Vue({
           {
             date: '10/01/2020 15:30:55',
             text: 'Lo sai che ha aperto una nuova pizzeria?',
-            status: 'sent'
+            status: 'sent',
+            show: false,
           },
           {
             date: '10/01/2020 15:50:00',
             text: 'Si, ma preferirei andare al cinema',
-            status: 'received'
+            status: 'received',
+            show: false,
           }
         ],
       },
@@ -106,7 +117,7 @@ let boolzapp = new Vue({
     },
     newMessage:"",
     search:'',
-    nowTime:"",
+    nowTime:"",    
   },
   methods: {
     openCurrentUserWindow(index){
@@ -126,14 +137,16 @@ let boolzapp = new Vue({
           element.messages.push({
             date: this.nowTime,
             text: this.newMessage,
-            status: 'received'
+            status: 'received',
+            show: false
           });
           /* il this all'interno della funzione setTimout è diverso si riferisce alla funzione stessa e non a ciò che è fuori, si potrebbe ovviare con una funziona che "punta a.." - con una funzione freccia  o con .bind(this) "legando" la funzione mediante bind al this esteno ad essa*/
           setTimeout(function(){
             element.messages.push({
               date: this.nowTime,
               text: 'Ok!',
-              status: 'sent'
+              status: 'sent',
+              show: false,
             });
           }.bind(this), 1000);
         }
@@ -151,13 +164,18 @@ let boolzapp = new Vue({
       chat_box.scrollTop = scrollHeight;
       //console.log(chat_box.scrollTop);
     },
+    deleteMessage(index,position) {
+        // quando si elimina un elemento nell'array di oggetti la dove esso è l'ultimo contenente le informazioni che sono state usate per aggiornare gli altri tag - si crea un problema di renderizzazione - per ovviare si è dato un if else in html dove l'array messages è vuoto compare un'altro elemento
+        let messages = this.contacts[index].messages;
+        Vue.delete(messages,position);
+    },
     timeFormate() {
       let date = new Date().toLocaleDateString();
       let time = new Date().toLocaleTimeString();
       this.nowTime = `${date}    ${time}`; //interpolazione di stringhe
     },
     nowTimes(){
-      this.timeFormate(new Date());
+      this.timeFormate(new Date());      
     },
   },
   /* Uso computed in modo da renderizzare l'uso della funzione solo quando entra in azione il search e non ad ogni iterazione dovuta da qual si voglia azione - cosache succederebbe se creassi un methods */
@@ -177,7 +195,7 @@ let boolzapp = new Vue({
   },
   updated() {
     this.scroll();
-  },
+  }
 });
 
 /* .scrollHeight ->
