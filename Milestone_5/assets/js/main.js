@@ -202,6 +202,6 @@ let boolzapp = new Vue({
 che misura dell'altezza del contenuto di un elemento, incluso il contenuto non visibile sullo schermo (overflow) 
 
 Element.scrollTop che imposta il numero di pixe in cui il contenuto dell'elemento viene fatto scorrere verticalmente , è una misura della distanza dalla parte superiore dell'elemento al suo contenuto visibile più in alto.
-Combinando in sequenza questi due valori prima misuro l'altezza del contenuto(dopo aver inserito il nuovo messaggio) e poi lo passo a scrollTop per aggiornare la misura verticale del scrollTop, in modo di farlo scorrere verticalmente di tale valore.
+Combinando in sequenza questi due valori prima misuro l'altezza del contenuto(dopo aver inserito il nuovo messaggio) e poi lo passo a scrollTop per aggiornare la misura verticale del scrollTop, in modo da farlo scorrere verticalmente di tale valore.
 
 richiamando il metodo in mounted() per poterlo successivamente ricaricare in updated cosi da fargli effettuare aggiornamenti sulle misurazioni rilevate. */
